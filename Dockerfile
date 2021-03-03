@@ -20,6 +20,7 @@ ENV MAVEN_OPTS="-Xmx2g -XX:ReservedCodeCacheSize=512m"
 RUN git clone  --depth 1 --branch ${SPARK_VERSION} https://github.com/apache/spark.git
 RUN mkdir -p /root/bdp/tools && cd /root/bdp/tools && git clone  --depth 1 --branch ${SPARK_VERSION} https://github.com/apache/spark.git
 RUN cd /root/bdp/tools/spark && ./build/mvn -Pyarn -Pmesos -Phive -Phive-thriftserver -Phadoop-${MAJOR_HADOOP_VERSION} -Dhadoop.version=${MAJOR_HADOOP_VERSION}.0 -DskipTests clean package
+RUN cd /root/bdp/tools/spark/python && python2 setup.py install && ln -s /usr/bin/python2 /usr/bin/python
 EXPOSE 8080
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
