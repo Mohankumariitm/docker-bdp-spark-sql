@@ -7,7 +7,7 @@ RUN apt-get -d install -y openjdk-8-jdk python2 python2-dev build-essential soft
 RUN apt-get install -y python2 python2-dev byobu curl git htop man unzip nano wget
 COPY code-server-install.sh /
 RUN chmod +x /code-server-install.sh && ./code-server-install.sh
-RUN curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py
+RUN curl https://bootstrap.pypa.io/2.7/get-pip.py --output get-pip.py
 RUN python2 get-pip.py
 RUN python2 -m pip install pytest
 RUN apt-get install -y openjdk-8-jdk
