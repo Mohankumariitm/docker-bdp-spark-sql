@@ -28,10 +28,8 @@ RUN cd /root/bdp/tools/spark && \
     python2 setup.py install
 
 EXPOSE 8080
-COPY entrypoint.sh /
-RUN chmod +x /entrypoint.sh
-ENTRYPOINT ["/entrypoint.sh"]
 
+ENTRYPOINT ["code-server","--bind-addr","0.0.0.0:8080","--auth","none"]
 
 
 
